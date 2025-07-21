@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Mail, Code, Zap, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
