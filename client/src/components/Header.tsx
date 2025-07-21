@@ -129,7 +129,7 @@ const Header = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl text-slate-700 mb-8 max-w-4xl mx-auto leading-relaxed font-medium"
+              className="text-xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed font-medium"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
@@ -205,8 +205,8 @@ const Header = () => {
                       <service.icon size={24} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                      <p className="text-slate-600">{service.description}</p>
+                      <h3 className="text-lg font-semibold mb-2 text-white">{service.title}</h3>
+                      <p className="text-slate-200">{service.description}</p>
                     </div>
                   </motion.div>
                 ))}

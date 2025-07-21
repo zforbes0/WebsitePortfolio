@@ -16,6 +16,7 @@ This is a portfolio website that was migrated from Bolt to Replit environment. I
   - Server running on port 5000 as required by Replit
   - Hot module replacement working correctly
   - Enhanced text readability by darkening background image overlay (changed from white/60% to black/40%)
+  - Improved text contrast: subtitle changed to slate-300, service titles to white, service descriptions to slate-200
 
 ## Migration Status
 - [x] Package installation verified
