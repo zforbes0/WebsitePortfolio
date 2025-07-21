@@ -8,7 +8,7 @@ const Header = () => {
   const y2 = useTransform(scrollY, [0, 1000], [0, -300]);
   const y3 = useTransform(scrollY, [0, 1000], [0, -100]);
   const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 800], [1, 0]);
 
   // Digital elements for parallax effect - expanded and more prominent
   const digitalElements = [

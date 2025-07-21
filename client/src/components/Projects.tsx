@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { ExternalLink } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 interface ProjectCategory {
   title: string;
@@ -120,6 +120,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ category, index }) => {
 const Projects: React.FC = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-50px" });
+  
+  // Parallax scroll effects for Projects section
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 2000], [0, -400]);
+  const y2 = useTransform(scrollY, [0, 2000], [0, -600]);
+  const y3 = useTransform(scrollY, [0, 2000], [0, -200]);
+  const rotate = useTransform(scrollY, [0, 2000], [0, 720]);
+  const parallaxOpacity = useTransform(scrollY, [600, 1200], [0.8, 0]);
+
+  // Additional digital elements for the Projects section
+  const projectDigitalElements = [
+    { text: "console.log()", size: "text-lg", x: "8%", y: "10%", delay: 0 },
+    { text: "Express.js", size: "text-xl", x: "82%", y: "15%", delay: 0.3 },
+    { text: "fetch()", size: "text-md", x: "12%", y: "25%", delay: 0.6 },
+    { text: "PostgreSQL", size: "text-lg", x: "88%", y: "35%", delay: 0.9 },
+    { text: "useState", size: "text-md", x: "18%", y: "45%", delay: 1.2 },
+    { text: "Flask", size: "text-xl", x: "78%", y: "55%", delay: 1.5 },
+    { text: "Redux", size: "text-lg", x: "15%", y: "65%", delay: 1.8 },
+    { text: "JSON", size: "text-md", x: "85%", y: "75%", delay: 2.1 },
+    { text: "Webpack", size: "text-lg", x: "20%", y: "85%", delay: 2.4 },
+  ];
+
+  const projectShapes = [
+    { type: "circle", size: "w-3 h-3", x: "30%", y: "20%", duration: 5 },
+    { type: "square", size: "w-2 h-2", x: "70%", y: "30%", duration: 4 },
+    { type: "triangle", size: "w-4 h-4", x: "50%", y: "50%", duration: 6 },
+    { type: "circle", size: "w-2 h-2", x: "25%", y: "70%", duration: 4 },
+    { type: "square", size: "w-3 h-3", x: "75%", y: "80%", duration: 5 },
+  ];
 
   const projectCategories: ProjectCategory[] = [
     {
@@ -161,6 +190,125 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="relative py-20 bg-gradient-to-b from-slate-100 to-slate-200 overflow-hidden">
+      {/* Extended Digital Parallax Background */}
+      <motion.div 
+        className="absolute inset-0 z-10 pointer-events-none overflow-hidden"
+        style={{ opacity: parallaxOpacity }}
+      >
+        {/* Floating Digital Elements for Projects */}
+        {projectDigitalElements.map((element, index) => (
+          <motion.div
+            key={`project-digital-${index}`}
+            className={`absolute ${element.size} text-blue-500/50 font-mono font-bold`}
+            style={{
+              left: element.x,
+              top: element.y,
+              y: index % 3 === 0 ? y1 : index % 3 === 1 ? y2 : y3,
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0, 0.7, 0.4, 0.7],
+              scale: [0, 1.2, 0.8, 1],
+              rotate: [0, 6, -6, 0]
+            }}
+            transition={{
+              duration: 4,
+              delay: element.delay,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          >
+            {element.text}
+          </motion.div>
+        ))}
+
+        {/* Geometric Shapes for Projects */}
+        {projectShapes.map((shape, index) => (
+          <motion.div
+            key={`project-geo-${index}`}
+            className={`absolute ${shape.size} bg-cyan-400/35 ${
+              shape.type === "circle" ? "rounded-full" : 
+              shape.type === "triangle" ? "rotate-45" : ""
+            }`}
+            style={{
+              left: shape.x,
+              top: shape.y,
+              y: y3,
+              rotate: shape.type === "square" ? rotate : 0,
+            }}
+            animate={{
+              scale: [1, 1.6, 1],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: shape.duration,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+
+        {/* Extended Binary Rain */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: y1 }}
+        >
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`project-binary-${i}`}
+              className="absolute text-xs font-mono text-green-500/30"
+              style={{
+                left: `${i * 10 + 5}%`,
+                top: "-10%",
+              }}
+              animate={{
+                y: ["0vh", "110vh"],
+                opacity: [0, 0.6, 0],
+              }}
+              transition={{
+                duration: 12 + i,
+                delay: i * 0.8,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {Array.from({ length: 15 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Extended Floating Lines */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: y2 }}
+        >
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`project-line-${i}`}
+              className="absolute h-0.5 bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"
+              style={{
+                width: `${30 + i * 6}%`,
+                left: `${i * 10}%`,
+                top: `${15 + i * 10}%`,
+                transform: `rotate(${i * 18}deg)`,
+              }}
+              initial={{ scaleX: 0 }}
+              animate={{ 
+                scaleX: [0, 1, 0],
+                opacity: [0, 0.7, 0]
+              }}
+              transition={{
+                duration: 5,
+                delay: i * 0.4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.2),transparent_70%)]"></div>
