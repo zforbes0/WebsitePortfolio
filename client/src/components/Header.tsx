@@ -10,23 +10,34 @@ const Header = () => {
   const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  // Digital elements for parallax effect
+  // Digital elements for parallax effect - expanded and more prominent
   const digitalElements = [
-    { text: "{ function() }", size: "text-sm", x: "10%", y: "20%", delay: 0 },
-    { text: "React.js", size: "text-lg", x: "85%", y: "15%", delay: 0.5 },
-    { text: "const dev =", size: "text-xs", x: "15%", y: "60%", delay: 1 },
-    { text: "TypeScript", size: "text-md", x: "80%", y: "70%", delay: 1.5 },
-    { text: "=>", size: "text-xl", x: "70%", y: "30%", delay: 2 },
-    { text: "API.call()", size: "text-sm", x: "20%", y: "80%", delay: 2.5 },
-    { text: "async/await", size: "text-xs", x: "90%", y: "50%", delay: 3 },
-    { text: "{ }", size: "text-2xl", x: "5%", y: "40%", delay: 3.5 },
+    { text: "{ function() }", size: "text-lg", x: "10%", y: "15%", delay: 0 },
+    { text: "React.js", size: "text-2xl", x: "85%", y: "12%", delay: 0.5 },
+    { text: "const dev =", size: "text-md", x: "15%", y: "35%", delay: 1 },
+    { text: "TypeScript", size: "text-xl", x: "80%", y: "40%", delay: 1.5 },
+    { text: "=>", size: "text-3xl", x: "70%", y: "25%", delay: 2 },
+    { text: "API.call()", size: "text-lg", x: "20%", y: "55%", delay: 2.5 },
+    { text: "async/await", size: "text-md", x: "90%", y: "60%", delay: 3 },
+    { text: "{ }", size: "text-4xl", x: "5%", y: "70%", delay: 3.5 },
+    { text: "Node.js", size: "text-xl", x: "25%", y: "80%", delay: 4 },
+    { text: "useState()", size: "text-md", x: "75%", y: "85%", delay: 4.5 },
+    { text: "MongoDB", size: "text-lg", x: "45%", y: "90%", delay: 5 },
+    { text: "GraphQL", size: "text-md", x: "65%", y: "75%", delay: 5.5 },
+    { text: "Docker", size: "text-lg", x: "35%", y: "95%", delay: 6 },
+    { text: "AWS", size: "text-xl", x: "55%", y: "18%", delay: 6.5 },
+    { text: "Git", size: "text-lg", x: "40%", y: "50%", delay: 7 },
   ];
 
   const geometricShapes = [
-    { type: "circle", size: "w-2 h-2", x: "25%", y: "25%", duration: 4 },
-    { type: "square", size: "w-3 h-3", x: "75%", y: "45%", duration: 6 },
-    { type: "triangle", size: "w-4 h-4", x: "60%", y: "65%", duration: 5 },
-    { type: "circle", size: "w-1 h-1", x: "40%", y: "85%", duration: 3 },
+    { type: "circle", size: "w-3 h-3", x: "25%", y: "20%", duration: 4 },
+    { type: "square", size: "w-4 h-4", x: "75%", y: "35%", duration: 6 },
+    { type: "triangle", size: "w-5 h-5", x: "60%", y: "55%", duration: 5 },
+    { type: "circle", size: "w-2 h-2", x: "40%", y: "75%", duration: 3 },
+    { type: "square", size: "w-3 h-3", x: "85%", y: "80%", duration: 7 },
+    { type: "circle", size: "w-4 h-4", x: "15%", y: "85%", duration: 4 },
+    { type: "triangle", size: "w-2 h-2", x: "90%", y: "25%", duration: 5 },
+    { type: "square", size: "w-5 h-5", x: "10%", y: "45%", duration: 6 },
   ];
 
   const skills = [
@@ -92,20 +103,20 @@ const Header = () => {
         {digitalElements.map((element, index) => (
           <motion.div
             key={`digital-${index}`}
-            className={`absolute ${element.size} text-blue-400/30 font-mono font-bold`}
+            className={`absolute ${element.size} text-blue-400/60 font-mono font-bold`}
             style={{
               left: element.x,
               top: element.y,
-              y: index % 2 === 0 ? y1 : y2,
+              y: index % 3 === 0 ? y1 : index % 3 === 1 ? y2 : y3,
             }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
-              opacity: [0, 1, 0.7, 1],
-              scale: [0, 1.2, 0.8, 1],
-              rotate: [0, 5, -5, 0]
+              opacity: [0, 0.8, 0.5, 0.8],
+              scale: [0, 1.3, 0.7, 1],
+              rotate: [0, 8, -8, 0]
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               delay: element.delay,
               repeat: Infinity,
               repeatType: "reverse",
@@ -120,7 +131,7 @@ const Header = () => {
         {geometricShapes.map((shape, index) => (
           <motion.div
             key={`geo-${index}`}
-            className={`absolute ${shape.size} bg-purple-400/20 ${
+            className={`absolute ${shape.size} bg-purple-400/40 ${
               shape.type === "circle" ? "rounded-full" : 
               shape.type === "triangle" ? "rotate-45" : ""
             }`}
@@ -131,8 +142,8 @@ const Header = () => {
               rotate: shape.type === "square" ? rotate : 0,
             }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.8, 1],
+              opacity: [0.3, 0.7, 0.3],
             }}
             transition={{
               duration: shape.duration,
@@ -147,24 +158,24 @@ const Header = () => {
           className="absolute inset-0"
           style={{ y: y2 }}
         >
-          {[...Array(8)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={`line-${i}`}
-              className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"
+              className="absolute h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
               style={{
-                width: `${20 + i * 10}%`,
-                left: `${i * 12}%`,
-                top: `${10 + i * 10}%`,
-                transform: `rotate(${i * 15}deg)`,
+                width: `${25 + i * 8}%`,
+                left: `${i * 8}%`,
+                top: `${8 + i * 8}%`,
+                transform: `rotate(${i * 12}deg)`,
               }}
               initial={{ scaleX: 0 }}
               animate={{ 
                 scaleX: [0, 1, 0],
-                opacity: [0, 0.6, 0]
+                opacity: [0, 0.8, 0]
               }}
               transition={{
-                duration: 3,
-                delay: i * 0.3,
+                duration: 4,
+                delay: i * 0.2,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
@@ -177,26 +188,26 @@ const Header = () => {
           className="absolute inset-0"
           style={{ y: y1 }}
         >
-          {[...Array(12)].map((_, i) => (
+          {[...Array(18)].map((_, i) => (
             <motion.div
               key={`binary-${i}`}
-              className="absolute text-xs font-mono text-green-400/20"
+              className="absolute text-sm font-mono text-green-400/40"
               style={{
-                left: `${i * 8 + 5}%`,
-                top: "-10%",
+                left: `${i * 6 + 2}%`,
+                top: "-15%",
               }}
               animate={{
-                y: ["0vh", "120vh"],
-                opacity: [0, 0.7, 0],
+                y: ["0vh", "130vh"],
+                opacity: [0, 0.8, 0],
               }}
               transition={{
-                duration: 8 + i,
-                delay: i * 0.5,
+                duration: 10 + i * 0.5,
+                delay: i * 0.3,
                 repeat: Infinity,
                 ease: "linear"
               }}
             >
-              {Array.from({ length: 20 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
+              {Array.from({ length: 25 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
             </motion.div>
           ))}
         </motion.div>
