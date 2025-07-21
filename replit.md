@@ -17,6 +17,7 @@ This is a portfolio website that was migrated from Bolt to Replit environment. I
   - Hot module replacement working correctly
   - Enhanced text readability by darkening background image overlay (changed from white/60% to black/40%)
   - Improved text contrast: subtitle changed to slate-300, service titles to white, service descriptions to slate-200
+  - Added dynamic parallax digital background with floating code elements, binary rain effect, geometric shapes, and animated lines that respond to scroll movement
 
 ## Migration Status
 - [x] Package installation verified

@@ -1,8 +1,34 @@
 
 import { Mail, Code, Zap, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Header = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -300]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  // Digital elements for parallax effect
+  const digitalElements = [
+    { text: "{ function() }", size: "text-sm", x: "10%", y: "20%", delay: 0 },
+    { text: "React.js", size: "text-lg", x: "85%", y: "15%", delay: 0.5 },
+    { text: "const dev =", size: "text-xs", x: "15%", y: "60%", delay: 1 },
+    { text: "TypeScript", size: "text-md", x: "80%", y: "70%", delay: 1.5 },
+    { text: "=>", size: "text-xl", x: "70%", y: "30%", delay: 2 },
+    { text: "API.call()", size: "text-sm", x: "20%", y: "80%", delay: 2.5 },
+    { text: "async/await", size: "text-xs", x: "90%", y: "50%", delay: 3 },
+    { text: "{ }", size: "text-2xl", x: "5%", y: "40%", delay: 3.5 },
+  ];
+
+  const geometricShapes = [
+    { type: "circle", size: "w-2 h-2", x: "25%", y: "25%", duration: 4 },
+    { type: "square", size: "w-3 h-3", x: "75%", y: "45%", duration: 6 },
+    { type: "triangle", size: "w-4 h-4", x: "60%", y: "65%", duration: 5 },
+    { type: "circle", size: "w-1 h-1", x: "40%", y: "85%", duration: 3 },
+  ];
+
   const skills = [
     { category: "Frontend", items: ["React", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"] },
     { category: "Backend", items: ["Python", "Node.js", "Flask", "REST APIs", "PostgreSQL"] },
@@ -56,6 +82,125 @@ const Header = () => {
           className="w-full h-full object-cover"
         />
       </div>
+
+      {/* Digital Parallax Background */}
+      <motion.div 
+        className="absolute inset-0 z-15 pointer-events-none overflow-hidden"
+        style={{ opacity }}
+      >
+        {/* Floating Digital Elements */}
+        {digitalElements.map((element, index) => (
+          <motion.div
+            key={`digital-${index}`}
+            className={`absolute ${element.size} text-blue-400/30 font-mono font-bold`}
+            style={{
+              left: element.x,
+              top: element.y,
+              y: index % 2 === 0 ? y1 : y2,
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0, 1, 0.7, 1],
+              scale: [0, 1.2, 0.8, 1],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{
+              duration: 4,
+              delay: element.delay,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          >
+            {element.text}
+          </motion.div>
+        ))}
+
+        {/* Geometric Shapes */}
+        {geometricShapes.map((shape, index) => (
+          <motion.div
+            key={`geo-${index}`}
+            className={`absolute ${shape.size} bg-purple-400/20 ${
+              shape.type === "circle" ? "rounded-full" : 
+              shape.type === "triangle" ? "rotate-45" : ""
+            }`}
+            style={{
+              left: shape.x,
+              top: shape.y,
+              y: y3,
+              rotate: shape.type === "square" ? rotate : 0,
+            }}
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: shape.duration,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+
+        {/* Floating Lines */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: y2 }}
+        >
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`line-${i}`}
+              className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"
+              style={{
+                width: `${20 + i * 10}%`,
+                left: `${i * 12}%`,
+                top: `${10 + i * 10}%`,
+                transform: `rotate(${i * 15}deg)`,
+              }}
+              initial={{ scaleX: 0 }}
+              animate={{ 
+                scaleX: [0, 1, 0],
+                opacity: [0, 0.6, 0]
+              }}
+              transition={{
+                duration: 3,
+                delay: i * 0.3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Binary Rain Effect */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: y1 }}
+        >
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`binary-${i}`}
+              className="absolute text-xs font-mono text-green-400/20"
+              style={{
+                left: `${i * 8 + 5}%`,
+                top: "-10%",
+              }}
+              animate={{
+                y: ["0vh", "120vh"],
+                opacity: [0, 0.7, 0],
+              }}
+              transition={{
+                duration: 8 + i,
+                delay: i * 0.5,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {Array.from({ length: 20 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-20">
