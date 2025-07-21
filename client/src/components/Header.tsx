@@ -49,7 +49,7 @@ const Header = () => {
     <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 overflow-hidden">
       {/* Hero Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-white/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
           src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
           alt="Technology background"

@@ -15,6 +15,7 @@ This is a portfolio website that was migrated from Bolt to Replit environment. I
   - Updated React components to modern patterns (removed unnecessary React imports)
   - Server running on port 5000 as required by Replit
   - Hot module replacement working correctly
+  - Enhanced text readability by darkening background image overlay (changed from white/60% to black/40%)
 
 ## Migration Status
 - [x] Package installation verified
