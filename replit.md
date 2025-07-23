@@ -25,6 +25,8 @@ This is a portfolio website that was migrated from Bolt to Replit environment. I
 - [x] CSS import order fixed
 - [x] React components modernized
 - [x] Server configuration adapted for Replit
+- [x] Digital parallax background effect implemented and optimized
+- [x] Code Architecture section removed from Featured Work
 - [ ] Final verification and deployment ready
 
 ## Technical Stack

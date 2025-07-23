@@ -127,7 +127,7 @@ const Projects: React.FC = () => {
   const y2 = useTransform(scrollY, [0, 2000], [0, -600]);
   const y3 = useTransform(scrollY, [0, 2000], [0, -200]);
   const rotate = useTransform(scrollY, [0, 2000], [0, 720]);
-  const parallaxOpacity = useTransform(scrollY, [600, 1200], [0.8, 0]);
+  const parallaxOpacity = useTransform(scrollY, [600, 1800], [0.8, 0]);
 
   // Additional digital elements for the Projects section
   const projectDigitalElements = [
@@ -157,16 +157,11 @@ const Projects: React.FC = () => {
       placeholder: "Workflow automation projects will be showcased here",
       image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
     },
+
     {
-      title: "Code Architecture",
-      description: "Backend implementations and system architecture",
-      placeholder: "Code architecture examples will be displayed here",
-      image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-    },
-    {
-      title: "Web Applications",
-      description: "Responsive websites and web applications",
-      placeholder: "Web application projects will be featured here",
+      title: "Websites",
+      description: "Responsive websites",
+      placeholder: "Website projects will be featured here",
       image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
     },
     {
