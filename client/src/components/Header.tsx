@@ -204,7 +204,7 @@ const Header = () => {
                 }}
                 animate={{
                   y: ["0vh", "250vh"],
-                  opacity: [0, 0.8, 0.7, 0.5, 0.3, 0.1, 0],
+                  opacity: [0, 0.8, 0.7, 0.6, 0.4, 0.25, 0],
                 }}
                 transition={{
                   duration: randomDuration,

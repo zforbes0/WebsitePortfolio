@@ -258,14 +258,14 @@ const Projects: React.FC = () => {
             return (
               <motion.div
                 key={`project-binary-${i}`}
-                className="absolute text-xs font-mono text-green-500/35"
+                className="absolute text-xs font-mono text-green-500/45"
                 style={{
                   left: `${randomLeft}%`,
                   top: `${randomTop}%`,
                 }}
                 animate={{
                   y: ["0vh", "300vh"],
-                  opacity: [0, 0.6, 0.5, 0.4, 0.25, 0.1, 0],
+                  opacity: [0, 0.6, 0.5, 0.45, 0.35, 0.2, 0],
                 }}
                 transition={{
                   duration: randomDuration,
