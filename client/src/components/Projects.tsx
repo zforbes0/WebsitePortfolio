@@ -259,7 +259,7 @@ const Projects: React.FC = () => {
               }}
               animate={{
                 y: ["0vh", "110vh"],
-                opacity: [0, 0.6, 0],
+                opacity: [0, 0.6, 0.4, 0],
               }}
               transition={{
                 duration: 12 + i,

@@ -8,7 +8,7 @@ const Header = () => {
   const y2 = useTransform(scrollY, [0, 1000], [0, -300]);
   const y3 = useTransform(scrollY, [0, 1000], [0, -100]);
   const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
-  const opacity = useTransform(scrollY, [0, 800], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 1800], [1, 0]);
 
   // Digital elements for parallax effect - expanded and more prominent
   const digitalElements = [
@@ -198,7 +198,7 @@ const Header = () => {
               }}
               animate={{
                 y: ["0vh", "130vh"],
-                opacity: [0, 0.8, 0],
+                opacity: [0, 0.8, 0.6, 0],
               }}
               transition={{
                 duration: 10 + i * 0.5,
@@ -279,9 +279,9 @@ const Header = () => {
               variants={animationVariants.fadeInScale}
               transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
             >
-              Full-Stack Developer
+              Zachary Forbes
               <br />
-              <span className="text-3xl md:text-5xl font-bold">& Automation Specialist</span>
+              <span className="text-3xl md:text-5xl font-bold">Full-Stack Developer & Automation Specialist</span>
             </motion.h1>
             
             <motion.p 
