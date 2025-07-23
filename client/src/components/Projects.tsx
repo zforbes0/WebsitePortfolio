@@ -249,28 +249,35 @@ const Projects: React.FC = () => {
           className="absolute inset-0"
           style={{ y: y1 }}
         >
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={`project-binary-${i}`}
-              className="absolute text-xs font-mono text-green-500/30"
-              style={{
-                left: `${i * 10 + 5}%`,
-                top: "-10%",
-              }}
-              animate={{
-                y: ["0vh", "160vh"],
-                opacity: [0, 0.6, 0.4, 0.2, 0],
-              }}
-              transition={{
-                duration: 18 + i * 1.2,
-                delay: i * 0.8,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            >
-              {Array.from({ length: 15 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
-            </motion.div>
-          ))}
+          {[...Array(20)].map((_, i) => {
+            const randomLeft = Math.random() * 92 + 4; // Random 4-96%
+            const randomDelay = Math.random() * 12; // Random 0-12s delay
+            const randomDuration = 25 + Math.random() * 20; // Random 25-45s duration
+            const randomTop = -15 - (Math.random() * 15); // Random -15% to -30%
+            
+            return (
+              <motion.div
+                key={`project-binary-${i}`}
+                className="absolute text-xs font-mono text-green-500/35"
+                style={{
+                  left: `${randomLeft}%`,
+                  top: `${randomTop}%`,
+                }}
+                animate={{
+                  y: ["0vh", "300vh"],
+                  opacity: [0, 0.6, 0.5, 0.4, 0.25, 0.1, 0],
+                }}
+                transition={{
+                  duration: randomDuration,
+                  delay: randomDelay,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                {Array.from({ length: 20 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Extended Floating Lines */}

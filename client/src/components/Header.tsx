@@ -188,28 +188,35 @@ const Header = () => {
           className="absolute inset-0"
           style={{ y: y1 }}
         >
-          {[...Array(18)].map((_, i) => (
-            <motion.div
-              key={`binary-${i}`}
-              className="absolute text-sm font-mono text-green-400/40"
-              style={{
-                left: `${i * 6 + 2}%`,
-                top: "-15%",
-              }}
-              animate={{
-                y: ["0vh", "180vh"],
-                opacity: [0, 0.8, 0.6, 0.3, 0],
-              }}
-              transition={{
-                duration: 15 + i * 0.8,
-                delay: i * 0.3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            >
-              {Array.from({ length: 25 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
-            </motion.div>
-          ))}
+          {[...Array(25)].map((_, i) => {
+            const randomLeft = Math.random() * 95 + 2; // Random 2-97%
+            const randomDelay = Math.random() * 8; // Random 0-8s delay
+            const randomDuration = 20 + Math.random() * 15; // Random 20-35s duration
+            const randomTop = -20 - (Math.random() * 10); // Random -20% to -30%
+            
+            return (
+              <motion.div
+                key={`binary-${i}`}
+                className="absolute text-sm font-mono text-green-400/45"
+                style={{
+                  left: `${randomLeft}%`,
+                  top: `${randomTop}%`,
+                }}
+                animate={{
+                  y: ["0vh", "250vh"],
+                  opacity: [0, 0.8, 0.7, 0.5, 0.3, 0.1, 0],
+                }}
+                transition={{
+                  duration: randomDuration,
+                  delay: randomDelay,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                {Array.from({ length: 30 }, () => Math.random() > 0.5 ? "1" : "0").join("")}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </motion.div>
 
