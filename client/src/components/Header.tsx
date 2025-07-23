@@ -4,9 +4,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Header = () => {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -300]);
-  const y3 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const y1 = useTransform(scrollY, [0, 2000], [0, -600]);
+  const y2 = useTransform(scrollY, [0, 2000], [0, -800]);
+  const y3 = useTransform(scrollY, [0, 2000], [0, -400]);
   const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
   const opacity = useTransform(scrollY, [0, 1800], [1, 0]);
 
@@ -197,11 +197,11 @@ const Header = () => {
                 top: "-15%",
               }}
               animate={{
-                y: ["0vh", "130vh"],
-                opacity: [0, 0.8, 0.6, 0],
+                y: ["0vh", "180vh"],
+                opacity: [0, 0.8, 0.6, 0.3, 0],
               }}
               transition={{
-                duration: 10 + i * 0.5,
+                duration: 15 + i * 0.8,
                 delay: i * 0.3,
                 repeat: Infinity,
                 ease: "linear"

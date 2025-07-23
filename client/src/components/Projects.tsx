@@ -123,9 +123,9 @@ const Projects: React.FC = () => {
   
   // Parallax scroll effects for Projects section
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 2000], [0, -400]);
-  const y2 = useTransform(scrollY, [0, 2000], [0, -600]);
-  const y3 = useTransform(scrollY, [0, 2000], [0, -200]);
+  const y1 = useTransform(scrollY, [0, 2500], [0, -800]);
+  const y2 = useTransform(scrollY, [0, 2500], [0, -1000]);
+  const y3 = useTransform(scrollY, [0, 2500], [0, -600]);
   const rotate = useTransform(scrollY, [0, 2000], [0, 720]);
   const parallaxOpacity = useTransform(scrollY, [600, 1800], [0.8, 0]);
 
@@ -258,11 +258,11 @@ const Projects: React.FC = () => {
                 top: "-10%",
               }}
               animate={{
-                y: ["0vh", "110vh"],
-                opacity: [0, 0.6, 0.4, 0],
+                y: ["0vh", "160vh"],
+                opacity: [0, 0.6, 0.4, 0.2, 0],
               }}
               transition={{
-                duration: 12 + i,
+                duration: 18 + i * 1.2,
                 delay: i * 0.8,
                 repeat: Infinity,
                 ease: "linear"
